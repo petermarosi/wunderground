@@ -51,7 +51,7 @@
 
         <q-item
           clickable
-          @click="doLogout"          
+          @click="doLogout"
         >
           <q-item-section avatar>
             <q-icon name="logout" />
@@ -72,7 +72,8 @@
   import { ref } from 'vue';
   import { useRouter } from 'vue-router'
   import EssentialLink from 'components/EssentialLink.vue';
-  
+  import { adminAuthStore } from 'stores/admin-auth';
+
   const router = useRouter()
 
   const essentialLinks = [
@@ -121,8 +122,14 @@
   ];
 
   const leftDrawerOpen = ref(false)
-      
+  const store = adminAuthStore();
+
   function toggleLeftDrawer () {
     leftDrawerOpen.value = !leftDrawerOpen.value
-  }   
+  }
+
+  function doLogout() {
+    store.logout();
+    router.push('/');
+  }
 </script>
