@@ -29,23 +29,23 @@
     </div>
 </template>
 <script setup lang="ts">
-import { computed } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
 import { adminAuthStore } from 'stores/admin-auth';
 
-const router = useRouter()
+const router = useRouter();
 const store = adminAuthStore();
 
 const adminAuth = computed(() => {
     return store.authenticated;
   })
 
-  function doLogin() {
-    store.login();
-    if (adminAuth) {
+  async function doLogin() {
+    store.login().then( () => {
       router.push('/admin');
-    }
+    });
   }
+
 </script>
 <style scoped lang="scss">
   .container {
