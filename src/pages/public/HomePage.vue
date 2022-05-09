@@ -1,15 +1,15 @@
 <template>
     <div class="container">
-        <h1>Üdv az WunderGround-on!</h1>        
+        <h1>Üdv az WunderGround-on!</h1>
         <q-row>
           <div class="state-container">
             {{ adminAuth ? 'Logged in' : 'Logged out' }}
-            
+
             <q-btn
               elevation="0"
               small
               class="ma-2"
-              text      
+              text
               color="red lighten-2"
               @click="doLogin"
             >
@@ -26,17 +26,25 @@
             Admin
           </q-btn>
         </q-row>
-    </div>    
+    </div>
 </template>
 <script setup lang="ts">
 import { computed } from '@vue/runtime-core'
-  
-  const adminAuth = computed(() => {
-    return false;
+import { useRouter } from 'vue-router';
+import { adminAuthStore } from 'stores/admin-auth';
+
+const router = useRouter()
+
+const store = adminAuthStore();
+const adminAuth = computed(() => {
+    return store.authenticated;
   })
 
   function doLogin() {
-    console.log("LOGIN TODO");
+    store.login();
+    if (adminAuth) {
+      router.push('/admin');
+    }
   }
 </script>
 <style scoped lang="scss">
