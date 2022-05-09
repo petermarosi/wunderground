@@ -1,0 +1,51 @@
+<template>
+    <div class="container">
+        <h1>Üdv az WunderGround-on!</h1>        
+        <q-row>
+          <div class="state-container">
+            {{ adminAuth ? 'Logged in' : 'Logged out' }}
+            
+            <q-btn
+              elevation="0"
+              small
+              class="ma-2"
+              text      
+              color="red lighten-2"
+              @click="doLogin"
+            >
+              Login
+              <q-icon name="thumb_down" />
+            </q-btn>
+          </div>
+          <q-btn
+            class="ma-2"
+            color="primary"
+            elevation="0"
+            @click="$router.push('/admin')"
+          >
+            Admin
+          </q-btn>
+        </q-row>
+    </div>    
+</template>
+<script setup lang="ts">
+import { computed } from '@vue/runtime-core'
+  
+  const adminAuth = computed(() => {
+    return false;
+  })
+
+  function doLogin() {
+    console.log("LOGIN TODO");
+  }
+</script>
+<style scoped lang="scss">
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 60px;
+    text-align: center;
+  }
+</style>
