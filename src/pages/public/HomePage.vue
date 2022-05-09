@@ -34,8 +34,8 @@ import { useRouter } from 'vue-router';
 import { adminAuthStore } from 'stores/admin-auth';
 
 const router = useRouter()
-
 const store = adminAuthStore();
+
 const adminAuth = computed(() => {
     return store.authenticated;
   })
