@@ -27,10 +27,6 @@ export const adminAuthStore = defineStore('admin-auth', {
         })
       }).catch( err => {
         console.log(err);
-        this.$patch({
-          accessToken: 'res.data.accessToken',
-          loggedIn: true
-        })
       });
     },
     logout () {
