@@ -14,12 +14,11 @@ export const adminAuthStore = defineStore('admin-auth', {
   },
 
   actions: {
-    async login () {
+    async login (userName: string, passCode: string) {
       const URL = 'https://okoshaccp-integ-2jdqz.ondigitalocean.app/app/auth/login';
-
       axios.post(URL, {
-        username: 'elek',
-        passcode: '034125'
+        username: userName,
+        passcode: passCode
       }).then( res => {
         this.$patch({
           accessToken: res.data.accessToken,

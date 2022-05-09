@@ -50,8 +50,10 @@ const adminAuth = computed(() => {
   })
 
   async function doLogin() {
-    store.login().then( () => {
-      router.push('/admin');
+    store.login(userName, passCode).then( () => {
+      if (adminAuth.value) {
+        router.push('/admin');
+      }
     });
   }
 
