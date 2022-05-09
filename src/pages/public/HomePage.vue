@@ -5,6 +5,12 @@
           <div class="state-container">
             {{ adminAuth ? 'Logged in' : 'Logged out' }}
 
+            <q-form>
+              <label>Username</label>
+              <input :value="userName" @input="event => userName = event.target.value">
+              <label>Passcode</label>
+              <input :value="passCode" @input="event => passCode = event.target.value">
+            </q-form>
             <q-btn
               elevation="0"
               small
@@ -35,6 +41,9 @@ import { adminAuthStore } from 'stores/admin-auth';
 
 const router = useRouter();
 const store = adminAuthStore();
+
+let userName = '';
+let passCode = '';
 
 const adminAuth = computed(() => {
     return store.authenticated;
